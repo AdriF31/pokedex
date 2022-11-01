@@ -54,7 +54,7 @@ class DetailPage extends StatelessWidget {
                           margin: const EdgeInsets.all(5),
                           padding: const EdgeInsets.all(20),
                           width: Get.size.width,
-                          height: Get.size.height * 0.56,
+                          height: Get.size.height * 0.6,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5)),
@@ -235,13 +235,18 @@ class DetailPage extends StatelessWidget {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(controller
-                                                            .pokemonDetail
-                                                            ?.stats?[index]
-                                                            .stat
-                                                            ?.name
-                                                            ?.getPokemonStat() ??
-                                                        ''),
+                                                    Text(
+                                                      controller
+                                                              .pokemonDetail
+                                                              ?.stats?[index]
+                                                              .stat
+                                                              ?.name
+                                                              ?.getPokemonStat() ??
+                                                          '',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                              fontSize: 12),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -251,12 +256,16 @@ class DetailPage extends StatelessWidget {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(controller
-                                                            .pokemonDetail
-                                                            ?.stats?[index]
-                                                            .baseStat
-                                                            .toString() ??
-                                                        ''),
+                                                    Text(
+                                                        controller
+                                                                .pokemonDetail
+                                                                ?.stats?[index]
+                                                                .baseStat
+                                                                .toString() ??
+                                                            '',
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                fontSize: 12)),
                                                   ],
                                                 ),
                                               ),
