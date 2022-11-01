@@ -9,11 +9,11 @@ class PokemonDescriptionModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     if(flavorTextEntries != null) {
-      _data["flavor_text_entries"] = flavorTextEntries?.map((e) => e.toJson()).toList();
+      data["flavor_text_entries"] = flavorTextEntries?.map((e) => e.toJson()).toList();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -31,15 +31,15 @@ class FlavorTextEntries {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["flavor_text"] = flavorText;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["flavor_text"] = flavorText;
     if(language != null) {
-      _data["language"] = language?.toJson();
+      data["language"] = language?.toJson();
     }
     if(version != null) {
-      _data["version"] = version?.toJson();
+      data["version"] = version?.toJson();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -55,10 +55,10 @@ class Version {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["name"] = name;
-    _data["url"] = url;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["name"] = name;
+    data["url"] = url;
+    return data;
   }
 }
 
@@ -74,9 +74,9 @@ class Language {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["name"] = name;
-    _data["url"] = url;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["name"] = name;
+    data["url"] = url;
+    return data;
   }
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:pokedex/data/model/pokemon_all_model.dart';
-import 'package:pokedex/data/model/pokemon_detail_model.dart';
 import 'package:pokedex/data/repository/repository.dart';
 
 class PokemonController extends GetxController {

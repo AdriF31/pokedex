@@ -23,18 +23,18 @@ class PokemonDetailModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["name"] = name;
-    _data["height"] = height;
-    _data["weight"] = weight;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["name"] = name;
+    data["height"] = height;
+    data["weight"] = weight;
     if (stats != null) {
-      _data["stats"] = stats?.map((e) => e.toJson()).toList();
+      data["stats"] = stats?.map((e) => e.toJson()).toList();
     }
     if (types != null) {
-      _data["types"] = types?.map((e) => e.toJson()).toList();
+      data["types"] = types?.map((e) => e.toJson()).toList();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -50,12 +50,12 @@ class Types {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["slot"] = slot;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["slot"] = slot;
     if (type != null) {
-      _data["type"] = type?.toJson();
+      data["type"] = type?.toJson();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -71,10 +71,10 @@ class Type {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["name"] = name;
-    _data["url"] = url;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["name"] = name;
+    data["url"] = url;
+    return data;
   }
 }
 
@@ -92,13 +92,13 @@ class Stats {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["base_stat"] = baseStat;
-    _data["effort"] = effort;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["base_stat"] = baseStat;
+    data["effort"] = effort;
     if (stat != null) {
-      _data["stat"] = stat?.toJson();
+      data["stat"] = stat?.toJson();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -114,9 +114,9 @@ class Stat {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["name"] = name;
-    _data["url"] = url;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["name"] = name;
+    data["url"] = url;
+    return data;
   }
 }

@@ -162,7 +162,7 @@ class DetailPage extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  VerticalDivider(
+                                  const VerticalDivider(
                                     color: Colors.black,
                                     thickness: 10,
                                   ),

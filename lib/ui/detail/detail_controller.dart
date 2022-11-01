@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:pokedex/const/color.dart';
 import 'package:pokedex/data/model/pokemon_description_model.dart';
 import 'package:pokedex/data/model/pokemon_detail_model.dart';
 import 'package:pokedex/data/repository/repository.dart';
@@ -29,10 +27,9 @@ class DetailController extends GetxController {
       var res = await repository.getPokemonDetail(id);
 
       pokemonDetail = res;
-      (pokemonDetail?.types as List).forEach((element) {
+      for (var element in (pokemonDetail?.types as List)) {
         types.add(element);
-      });
-      print("types : $types");
+      }
 
       update();
     } catch (e) {
@@ -48,7 +45,6 @@ class DetailController extends GetxController {
       for (var element in (res.flavorTextEntries as List<dynamic>)) {
         pokemonDescription.add(element);
       }
-      print(pokemonDescription[0].flavorText);
       update();
     } catch (e) {
       update();

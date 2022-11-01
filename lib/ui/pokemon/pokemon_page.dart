@@ -7,7 +7,6 @@ import 'package:lottie/lottie.dart';
 import 'package:pokedex/const/color.dart';
 import 'package:pokedex/data/model/pokemon_all_model.dart';
 import 'package:pokedex/ui/detail/detail_page.dart';
-import 'package:pokedex/ui/favorite/favorite_page.dart';
 import 'package:pokedex/ui/pokemon/pokemon_controller.dart';
 import 'package:pokedex/helper/extension_method.dart';
 
@@ -45,7 +44,7 @@ class PokemonPage extends StatelessWidget {
                       onPressed: () {
                         // Get.to(() => const FavoritePage());
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.favorite,
                         color: Colors.red,
                         size: 30,
@@ -61,14 +60,14 @@ class PokemonPage extends StatelessWidget {
                       child: TextField(
                         decoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(12),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search_outlined,
                               color: Colors.grey,
                             ),
                             hintText: "Cari Pokemon",
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.black,
                                 ))),
                       ),

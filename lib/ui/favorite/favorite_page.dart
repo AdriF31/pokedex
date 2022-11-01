@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:lottie/lottie.dart';
@@ -20,7 +17,7 @@ class FavoritePage extends StatelessWidget {
         init: FavoriteController(),
         builder: (controller) => Scaffold(
               appBar: AppBar(
-                title: Text("favorite"),
+                title: const Text("favorite"),
               ),
               body: PagedGridView<int, Results>(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
