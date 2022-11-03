@@ -12,11 +12,23 @@ extension StringManipulation on String {
   }
 
   String getPokemonStat() {
-    return replaceAll('special', 'SP')
-        .replaceAll('attack', 'ATK')
-        .replaceAll('defense', 'DEF')
-        .replaceAll('speed', 'SPD')
-        .replaceAll('hp', 'HP');
+    switch (this) {
+      case 'special':
+        return 'SP';
+      case 'attack':
+        return 'ATK';
+      case 'defense':
+        return 'DEF';
+      case 'speed':
+        return 'SPD';
+      case 'hp':
+        return 'HP';
+      case 'special-attack':
+        return 'SP-ATK';
+      case 'special-defense':
+        return 'SP-DEF';
+    }
+    return '-';
   }
 }
 
