@@ -82,47 +82,30 @@ class DetailPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 25,
-                                child: Center(
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: controller.types.length,
-                                      itemBuilder: (context, index) =>
-                                          controller.types.isNotEmpty
-                                              ? Container(
-                                                  margin: const EdgeInsets.only(
-                                                      right: 8),
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 3),
-                                                  decoration: BoxDecoration(
-                                                      color: controller
-                                                          .types[index]
-                                                          .type
-                                                          ?.name
-                                                          ?.toPokemonTypeColor(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5)),
-                                                  child: Text(
-                                                    controller.types[index].type
-                                                            ?.name ??
-                                                        '',
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 12,
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                )
-                                              : Container()),
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: controller.types
+                                    .map((e) => Container(
+                                          margin:
+                                              const EdgeInsets.only(right: 8),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 3),
+                                          decoration: BoxDecoration(
+                                              color: e.type?.name
+                                                  ?.toPokemonTypeColor(),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Text(
+                                            e.type?.name ?? '',
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 12,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ))
+                                    .toList(),
                               ),
                               const SizedBox(
                                 height: 8,
@@ -130,7 +113,10 @@ class DetailPage extends StatelessWidget {
                               Text(
                                 'About',
                                 style: GoogleFonts.poppins(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: controller.types[0].type?.name
+                                        ?.toPokemonTypeColor()),
                               ),
                               const SizedBox(
                                 height: 8,
@@ -208,103 +194,81 @@ class DetailPage extends StatelessWidget {
                               Text(
                                 'Base Stats',
                                 style: GoogleFonts.poppins(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: controller.types[0].type?.name
+                                        ?.toPokemonTypeColor()),
                               ),
                               const SizedBox(
                                 height: 8,
                               ),
-                              Expanded(
-                                flex: 3,
-                                child: ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
-                                  itemCount:
-                                      controller.pokemonDetail?.stats?.length,
-                                  itemBuilder: ((context, index) => Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      controller
-                                                              .pokemonDetail
-                                                              ?.stats?[index]
-                                                              .stat
-                                                              ?.name
-                                                              ?.getPokemonStat() ??
-                                                          '',
+                              Column(
+                                  children: controller.pokemonDetail!.stats!
+                                      .map(
+                                        (e) => Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    e.stat?.name
+                                                            ?.getPokemonStat() ??
+                                                        '',
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Flexible(
+                                              flex: 1,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(e.baseStat.toString(),
                                                       style:
                                                           GoogleFonts.poppins(
-                                                              fontSize: 12),
-                                                    ),
-                                                  ],
-                                                ),
+                                                              fontSize: 12)),
+                                                ],
                                               ),
-                                              Flexible(
-                                                flex: 1,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        controller
-                                                                .pokemonDetail
-                                                                ?.stats?[index]
-                                                                .baseStat
-                                                                .toString() ??
-                                                            '',
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                fontSize: 12)),
-                                                  ],
-                                                ),
-                                              ),
-                                              Flexible(
-                                                flex: 5,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child:
-                                                          LinearProgressIndicator(
-                                                        minHeight: 7,
-                                                        backgroundColor: controller
-                                                            .types[0].type?.name
-                                                            ?.toPokemonTypeColor()
-                                                            .withOpacity(0.3),
-                                                        color: controller
-                                                            .types[0].type?.name
-                                                            ?.toPokemonTypeColor(),
-                                                        value: (controller
-                                                                .pokemonDetail
-                                                                ?.stats?[index]
-                                                                .baseStat)! /
-                                                            255,
-                                                      ),
+                                            ),
+                                            Flexible(
+                                              flex: 5,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    child:
+                                                        LinearProgressIndicator(
+                                                      minHeight: 7,
+                                                      backgroundColor: controller
+                                                          .types[0].type?.name
+                                                          ?.toPokemonTypeColor()
+                                                          .withOpacity(0.3),
+                                                      color: controller
+                                                          .types[0].type?.name
+                                                          ?.toPokemonTypeColor(),
+                                                      value:
+                                                          (e.baseStat)! / 255,
                                                     ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                              ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                      .toList()),
                             ],
                           ),
                         ),
