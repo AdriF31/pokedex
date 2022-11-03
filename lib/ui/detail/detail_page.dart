@@ -17,7 +17,7 @@ class DetailPage extends StatelessWidget {
         builder: (controller) => Scaffold(
             backgroundColor: controller.types.isNotEmpty
                 ? controller.types[0].type?.name?.toPokemonTypeColor()
-                : grass,
+                : Colors.white,
             appBar: AppBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
@@ -130,8 +130,8 @@ class DetailPage extends StatelessWidget {
                                   RichText(
                                       textAlign: TextAlign.center,
                                       text: TextSpan(
-                                          style:
-                                              const TextStyle(color: Colors.black87),
+                                          style: const TextStyle(
+                                              color: Colors.black87),
                                           children: [
                                             WidgetSpan(
                                                 child: SvgPicture.asset(
@@ -159,8 +159,8 @@ class DetailPage extends StatelessWidget {
                                   RichText(
                                       textAlign: TextAlign.center,
                                       text: TextSpan(
-                                          style:
-                                              const TextStyle(color: Colors.black87),
+                                          style: const TextStyle(
+                                              color: Colors.black87),
                                           children: [
                                             WidgetSpan(
                                                 child: SvgPicture.asset(
@@ -312,12 +312,12 @@ class DetailPage extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: -20,
+                        top: 0,
                         child: Column(
                           children: [
                             Image.network(
                               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${controller.pokemonDetail?.id ?? 0}.png',
-                              width: Get.size.width * 0.5,
+                              width: Get.size.width * 0.45,
                             ),
                           ],
                         ),

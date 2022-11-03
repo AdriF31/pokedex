@@ -11,7 +11,6 @@ class DetailController extends GetxController {
   List<Types> types = [];
   Set<String?> filter = {};
   dynamic argumentData = Get.arguments;
-  RxBool isFavorite = false.obs;
 
   @override
   void onInit() {
@@ -54,7 +53,6 @@ class DetailController extends GetxController {
       // }
       filter = pokemonDescription.toSet();
       pokemonDescription = filter.toList();
- 
 
       update();
     } catch (e) {
