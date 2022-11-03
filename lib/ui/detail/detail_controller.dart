@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:pokedex/data/model/pokemon_description_model.dart';
 import 'package:pokedex/data/model/pokemon_detail_model.dart';
 import 'package:pokedex/data/repository/repository.dart';
 
@@ -8,8 +7,9 @@ class DetailController extends GetxController {
   final Repository repository = Get.find<Repository>();
   NumberFormat formatter = NumberFormat("#000");
   PokemonDetailModel? pokemonDetail = PokemonDetailModel();
-  List<FlavorTextEntries> pokemonDescription = [];
+  List<String?> pokemonDescription = [];
   List<Types> types = [];
+  Set<String?> filter = {};
   dynamic argumentData = Get.arguments;
   RxBool isFavorite = false.obs;
 
@@ -27,6 +27,7 @@ class DetailController extends GetxController {
       var res = await repository.getPokemonDetail(id);
 
       pokemonDetail = res;
+
       for (var element in (pokemonDetail?.types as List)) {
         types.add(element);
       }
@@ -34,7 +35,7 @@ class DetailController extends GetxController {
       update();
     } catch (e) {
       update();
-      return [];
+      return null;
     }
   }
 
@@ -42,15 +43,23 @@ class DetailController extends GetxController {
     try {
       var res = await repository.getPokemonDescription(id);
 
-      for (var element in (res.flavorTextEntries as List<dynamic>)) {
-        pokemonDescription.add(element);
+      for (int index = 0; index <= res.flavorTextEntries!.length; index++) {
+        if (res.flavorTextEntries?[index].language?.name == 'en') {
+          pokemonDescription.add(res.flavorTextEntries?[index].flavorText);
+        }
       }
+
+      // for (var element in (res.flavorTextEntries as List<dynamic>)) {
+      //   pokemonDescription.add(element);
+      // }
+      filter = pokemonDescription.toSet();
+      pokemonDescription = filter.toList();
+ 
+
       update();
     } catch (e) {
       update();
-      return [];
+      return null;
     }
   }
-
-
 }

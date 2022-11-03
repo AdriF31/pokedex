@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pokedex/const/color.dart';
 import 'package:pokedex/ui/detail/detail_controller.dart';
 import 'package:pokedex/helper/extension_method.dart';
@@ -35,8 +36,8 @@ class DetailPage extends StatelessWidget {
               ],
             ),
             body: controller.pokemonDescription.isNotEmpty &&
-                    controller.pokemonDetail!.stats!.isNotEmpty &&
-                    controller.pokemonDetail!.types!.isNotEmpty
+                    controller.pokemonDetail != null &&
+                    controller.types.isNotEmpty
                 ? Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
@@ -67,7 +68,7 @@ class DetailPage extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {},
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.favorite_outline,
                                       color: Colors.red,
                                       size: 34,
@@ -96,7 +97,8 @@ class DetailPage extends StatelessWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(5)),
                                               child: Text(
-                                                e.type?.name ?? '',
+                                                e.type?.name?.capitalizeFirst ??
+                                                    '',
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 12,
                                                     color: Colors.white,
@@ -129,7 +131,7 @@ class DetailPage extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       text: TextSpan(
                                           style:
-                                              TextStyle(color: Colors.black87),
+                                              const TextStyle(color: Colors.black87),
                                           children: [
                                             WidgetSpan(
                                                 child: SvgPicture.asset(
@@ -147,7 +149,7 @@ class DetailPage extends StatelessWidget {
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 14))
                                           ])),
-                                  VerticalDivider(
+                                  const VerticalDivider(
                                     width: 20,
                                     thickness: 1,
                                     indent: 20,
@@ -158,7 +160,7 @@ class DetailPage extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                       text: TextSpan(
                                           style:
-                                              TextStyle(color: Colors.black87),
+                                              const TextStyle(color: Colors.black87),
                                           children: [
                                             WidgetSpan(
                                                 child: SvgPicture.asset(
@@ -182,7 +184,7 @@ class DetailPage extends StatelessWidget {
                                 height: 16,
                               ),
                               Text(
-                                '${controller.pokemonDescription[0].flavorText?.getPokemonDescription() ?? '-'}  ${controller.pokemonDescription[1].flavorText?.getPokemonDescription() ?? '-'} ${controller.pokemonDescription[2].flavorText?.getPokemonDescription() ?? '-'}',
+                                '${controller.pokemonDescription[0]?.getPokemonDescription() ?? '-'}  ${controller.pokemonDescription[1]?.getPokemonDescription()} ${controller.pokemonDescription[2]?.getPokemonDescription() ?? '-'}',
                                 style: GoogleFonts.poppins(
                                   fontSize: 14,
                                 ),
@@ -257,28 +259,45 @@ class DetailPage extends StatelessWidget {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(10),
-                                                        child:
-                                                            LinearProgressIndicator(
-                                                          minHeight: 7,
-                                                          backgroundColor: controller
-                                                                  .types[0]
-                                                                  .type
-                                                                  ?.name
-                                                                  ?.toPokemonTypeColor()
-                                                                  .withOpacity(
-                                                                      0.3) ??
-                                                              grass.withOpacity(
-                                                                  0.3),
-                                                          color: controller
-                                                                  .types[0]
-                                                                  .type
-                                                                  ?.name
-                                                                  ?.toPokemonTypeColor() ??
-                                                              grass,
-                                                          value: (e.baseStat ??
-                                                                  0) /
-                                                              255,
-                                                        ),
+                                                        child: TweenAnimationBuilder<
+                                                                double>(
+                                                            duration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        400),
+                                                            curve: Curves
+                                                                .easeInOut,
+                                                            tween:
+                                                                Tween<double>(
+                                                              begin: 0,
+                                                              end:
+                                                                  (e.baseStat ??
+                                                                          0) /
+                                                                      255,
+                                                            ),
+                                                            builder: (context,
+                                                                value, _) {
+                                                              return LinearProgressIndicator(
+                                                                  minHeight: 7,
+                                                                  backgroundColor: controller
+                                                                          .types[
+                                                                              0]
+                                                                          .type
+                                                                          ?.name
+                                                                          ?.toPokemonTypeColor()
+                                                                          .withOpacity(
+                                                                              0.3) ??
+                                                                      grass.withOpacity(
+                                                                          0.3),
+                                                                  color: controller
+                                                                          .types[
+                                                                              0]
+                                                                          .type
+                                                                          ?.name
+                                                                          ?.toPokemonTypeColor() ??
+                                                                      grass,
+                                                                  value: value);
+                                                            }),
                                                       ),
                                                     ],
                                                   ),
@@ -298,15 +317,17 @@ class DetailPage extends StatelessWidget {
                           children: [
                             Image.network(
                               'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${controller.pokemonDetail?.id ?? 0}.png',
-                              width: 200,
+                              width: Get.size.width * 0.5,
                             ),
                           ],
                         ),
                       ),
                     ],
                   )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  )));
+                : Center(
+                    child: Lottie.asset(
+                    'assets/images/pokeball_lottie.json',
+                    width: 50,
+                  ))));
   }
 }

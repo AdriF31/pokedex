@@ -9,7 +9,7 @@ class PokemonController extends GetxController {
   final Repository repository = Get.find<Repository>();
   NumberFormat formatter = NumberFormat("#000");
 
-  static const limit = 10;
+  static const limit = 9;
 
   final PagingController<int, Results> pagingController =
       PagingController(firstPageKey: 0);
@@ -27,7 +27,7 @@ class PokemonController extends GetxController {
   Future<void> _fetchPage(int pageKey) async {
     try {
       final newItems = await repository.getAllPokemon(pageKey, limit);
-      
+
       final isLastPage = newItems!.results!.length < limit;
       if (isLastPage) {
         pagingController.appendLastPage(newItems.results!);
@@ -39,6 +39,4 @@ class PokemonController extends GetxController {
       pagingController.error = error;
     }
   }
-
-
 }
