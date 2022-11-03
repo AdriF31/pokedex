@@ -27,6 +27,7 @@ class PokemonController extends GetxController {
   Future<void> _fetchPage(int pageKey) async {
     try {
       final newItems = await repository.getAllPokemon(pageKey, limit);
+      
       final isLastPage = newItems!.results!.length < limit;
       if (isLastPage) {
         pagingController.appendLastPage(newItems.results!);

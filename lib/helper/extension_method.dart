@@ -35,8 +35,8 @@ extension PokemonTypeExtension on String {
         return steel;
       case 'water':
         return water;
-      case 'physic':
-        return physic;
+      case 'psychic':
+        return psychic;
       case 'ice':
         return ice;
       case 'dark':

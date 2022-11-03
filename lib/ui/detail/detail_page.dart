@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pokedex/const/color.dart';
 import 'package:pokedex/ui/detail/detail_controller.dart';
 import 'package:pokedex/helper/extension_method.dart';
 
@@ -94,7 +95,8 @@ class DetailPage extends StatelessWidget {
                                               horizontal: 10, vertical: 3),
                                           decoration: BoxDecoration(
                                               color: e.type?.name
-                                                  ?.toPokemonTypeColor(),
+                                                      ?.toPokemonTypeColor() ??
+                                                  grass,
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           child: Text(
@@ -116,7 +118,8 @@ class DetailPage extends StatelessWidget {
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: controller.types[0].type?.name
-                                        ?.toPokemonTypeColor()),
+                                            ?.toPokemonTypeColor() ??
+                                        grass),
                               ),
                               const SizedBox(
                                 height: 8,
@@ -179,7 +182,7 @@ class DetailPage extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(
-                                height: 8,
+                                height: 16,
                               ),
                               Text(
                                 '${controller.pokemonDescription[0].flavorText?.getPokemonDescription()} ${controller.pokemonDescription[2].flavorText?.getPokemonDescription()}',
@@ -189,7 +192,7 @@ class DetailPage extends StatelessWidget {
                                 textAlign: TextAlign.justify,
                               ),
                               const SizedBox(
-                                height: 8,
+                                height: 16,
                               ),
                               Text(
                                 'Base Stats',
@@ -197,7 +200,8 @@ class DetailPage extends StatelessWidget {
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: controller.types[0].type?.name
-                                        ?.toPokemonTypeColor()),
+                                            ?.toPokemonTypeColor() ??
+                                        grass),
                               ),
                               const SizedBox(
                                 height: 8,
@@ -252,12 +256,18 @@ class DetailPage extends StatelessWidget {
                                                         LinearProgressIndicator(
                                                       minHeight: 7,
                                                       backgroundColor: controller
-                                                          .types[0].type?.name
-                                                          ?.toPokemonTypeColor()
-                                                          .withOpacity(0.3),
-                                                      color: controller
-                                                          .types[0].type?.name
-                                                          ?.toPokemonTypeColor(),
+                                                              .types[0]
+                                                              .type
+                                                              ?.name
+                                                              ?.toPokemonTypeColor()
+                                                              .withOpacity(
+                                                                  0.3) ??
+                                                          grass
+                                                              .withOpacity(0.3),
+                                                      color: controller.types[0]
+                                                              .type?.name
+                                                              ?.toPokemonTypeColor() ??
+                                                          grass,
                                                       value:
                                                           (e.baseStat)! / 255,
                                                     ),
