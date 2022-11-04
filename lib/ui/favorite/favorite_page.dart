@@ -42,7 +42,7 @@ class FavoritePage extends StatelessWidget {
                     itemBuilder: (context, item, index) => GestureDetector(
                           onTap: () => Get.to(() => const DetailPage(),
                               arguments: {
-                                "id": controller.storage.getPokemonId()
+                                // "id": controller.storage.getPokemonId()
                               }),
                           child: Container(
                             decoration: BoxDecoration(
@@ -59,32 +59,33 @@ class FavoritePage extends StatelessWidget {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        Text(
-                                          '#${controller.formatter.format(controller.storage.getPokemonId() ?? 0)}',
-                                          style:
-                                              GoogleFonts.poppins(fontSize: 16),
-                                        ),
+                                        // Text(
+                                        //   '#${controller.formatter.format(controller.storage.getPokemonId() ?? 0)}',
+                                        //   style:
+                                        //       GoogleFonts.poppins(fontSize: 16),
+                                        // ),
                                       ],
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Image.network(
-                                      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${controller.storage.getPokemonId()}}.png',
-                                      loadingBuilder: (BuildContext context,
-                                          Widget child,
-                                          ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    }
-                                    return Center(
-                                        child: Lottie.asset(
-                                      'assets/images/pokeball_lottie.json',
-                                      width: 50,
-                                    ));
-                                  }),
-                                ),
+                                // Expanded(
+                                //   flex: 4,
+                                //   child: 
+                                //   // Image.network(
+                                //   //     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${controller.storage.getPokemonId()}}.png',
+                                //   //     loadingBuilder: (BuildContext context,
+                                //   //         Widget child,
+                                //   //         ImageChunkEvent? loadingProgress) {
+                                //   //   if (loadingProgress == null) {
+                                //   //     return child;
+                                //   //   }
+                                //   //   return Center(
+                                //   //       child: Lottie.asset(
+                                //   //     'assets/images/pokeball_lottie.json',
+                                //   //     width: 50,
+                                //   //   ));
+                                //   // }),
+                                // ),
                                 Flexible(
                                     flex: 2,
                                     child: Container(

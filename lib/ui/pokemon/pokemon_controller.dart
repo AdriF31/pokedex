@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
+import 'package:pokedex/base/base_controller.dart';
 import 'package:pokedex/data/model/pokemon_all_model.dart';
-import 'package:pokedex/data/repository/repository.dart';
 
-class PokemonController extends GetxController {
-  final Repository repository = Get.find<Repository>();
+class PokemonController extends BaseController {
   NumberFormat formatter = NumberFormat("#000");
 
   static const limit = 9;

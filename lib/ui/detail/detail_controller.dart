@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pokedex/base/base_controller.dart';
 import 'package:pokedex/data/model/pokemon_detail_model.dart';
 import 'package:pokedex/data/repository/repository.dart';
 
-class DetailController extends GetxController {
-  final Repository repository = Get.find<Repository>();
+class DetailController extends BaseController {
+ 
   NumberFormat formatter = NumberFormat("#000");
   PokemonDetailModel? pokemonDetail = PokemonDetailModel();
   List<String?> pokemonDescription = [];
@@ -48,9 +49,7 @@ class DetailController extends GetxController {
         }
       }
 
-      // for (var element in (res.flavorTextEntries as List<dynamic>)) {
-      //   pokemonDescription.add(element);
-      // }
+      
       filter = pokemonDescription.toSet();
       pokemonDescription = filter.toList();
 
