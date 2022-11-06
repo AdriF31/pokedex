@@ -66,14 +66,22 @@ class DetailPage extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      Icons.favorite_outline,
-                                      color: Colors.red,
-                                      size: 34,
-                                    ),
-                                  )
+                                  Obx(() => GestureDetector(
+                                        onTap: () {
+                                          controller.isFavorite.toggle();
+                                          controller.simpanPokemon(
+                                              controller.pokemonDetail?.id ?? 0,
+                                              controller.pokemonDetail?.name ??
+                                                  '');
+                                        },
+                                        child: Icon(
+                                          controller.isFavorite.isFalse
+                                              ? Icons.favorite_outline
+                                              : Icons.favorite,
+                                          color: Colors.red,
+                                          size: 34,
+                                        ),
+                                      ))
                                 ],
                               ),
                               const SizedBox(
@@ -149,12 +157,13 @@ class DetailPage extends StatelessWidget {
                                                 style: GoogleFonts.poppins(
                                                     fontSize: 14))
                                           ])),
-                                  const VerticalDivider(
-                                    width: 20,
-                                    thickness: 1,
-                                    indent: 20,
-                                    endIndent: 0,
-                                    color: Colors.black87,
+                                  const SizedBox(
+                                    height: 70,
+                                    child: VerticalDivider(
+                                      width: 40,
+                                      thickness: 1,
+                                      color: Colors.black26,
+                                    ),
                                   ),
                                   RichText(
                                       textAlign: TextAlign.center,

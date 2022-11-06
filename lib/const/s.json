@@ -1,34 +1,18 @@
 {
-    "id":1,
-    "name": "bulbasaur",
-    "height":7,
-    "weight": 69,
-    "stats": [
+    "status": true,
+    "message": "List Donation",
+    "data": [
         {
-            "base_stat": 45,
-            "effort": 0,
-            "stat": {
-                "name": "hp",
-                "url": "https://pokeapi.co/api/v2/stat/1/"
-            }
+            "id": 17,
+            "title": "Maiores sed id consequuntur velit est expedita iure molestiae.",
+            "description": "Ipsum nisi repellat sint cumque perspiciatis porro distinctio. Qui blanditiis quaerat modi dolorem nostrum voluptatem repellendus. Quo quis magni quaerat voluptate quas.",
+            "total_budget": 2825904,
+            "image": "http://127.0.0.1:8000/storage/img/default.jpg",
+            "location": "kontoljaran",
+            "category": "Bencana Alam",
+            "created_at": "03-11-2022",
+            "total_collected": 1370000
         }
-    ],
-    "types": [
-        {
-            "slot": 1,
-            "type": {
-                "name": "grass",
-                "url": "https://pokeapi.co/api/v2/type/12/"
-            }
-        },
-        {
-            "slot": 2,
-            "type": {
-                "name": "poison",
-                "url": "https://pokeapi.co/api/v2/type/4/"
-            }
-        }
+     
     ]
-    
 }
-

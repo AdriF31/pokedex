@@ -41,9 +41,7 @@ class PokemonPage extends StatelessWidget {
                 ),
                 actions: [
                   IconButton(
-                      onPressed: () {
-                        // Get.to(() => const FavoritePage());
-                      },
+                      onPressed: () {},
                       icon: const Icon(
                         Icons.favorite,
                         color: Colors.red,

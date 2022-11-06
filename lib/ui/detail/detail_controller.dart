@@ -1,24 +1,26 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:pokedex/base/base_controller.dart';
 import 'package:pokedex/data/model/pokemon_detail_model.dart';
 import 'package:pokedex/data/repository/repository.dart';
 
 class DetailController extends BaseController {
- 
+  var isFavorite = false.obs;
   NumberFormat formatter = NumberFormat("#000");
   PokemonDetailModel? pokemonDetail = PokemonDetailModel();
   List<String?> pokemonDescription = [];
   List<Types> types = [];
   Set<String?> filter = {};
   dynamic argumentData = Get.arguments;
+  GetStorage box = GetStorage();
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     _getPokemonDetail(int.parse(argumentData['id']));
     _getPokemonDescription(int.parse(argumentData['id']));
-
+    await GetStorage.init();
     update();
   }
 
@@ -49,7 +51,6 @@ class DetailController extends BaseController {
         }
       }
 
-      
       filter = pokemonDescription.toSet();
       pokemonDescription = filter.toList();
 
@@ -57,6 +58,14 @@ class DetailController extends BaseController {
     } catch (e) {
       update();
       return null;
+    }
+  }
+
+  void simpanPokemon(int id, String name) {
+    if (isFavorite.isTrue) {
+      box.write('favorite', {"id": id, "name": name});
+    } else {
+      box.remove('favorite');
     }
   }
 }
